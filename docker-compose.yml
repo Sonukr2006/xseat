@@ -1,0 +1,51 @@
+version: '3.9'
+
+services:
+  mongo:
+    image: mongo:6.0
+    container_name: xseat-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: xseat-backend
+    environment:
+      - PORT=4000
+      - MONGODB_URI=mongodb://mongo:27017/xseat
+      - JWT_SECRET=supersecret
+      - OTP_DEV_BYPASS=123456
+      - PREDICTION_SERVICE_URL=http://prediction-service:8000
+      - FRONTEND_ORIGIN=http://localhost:3000
+    ports:
+      - "4000:4000"
+    depends_on:
+      - mongo
+      - prediction-service
+
+  prediction-service:
+    build:
+      context: ./prediction-service
+      dockerfile: Dockerfile
+    container_name: xseat-prediction
+    ports:
+      - "8000:8000"
+
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    container_name: xseat-web
+    environment:
+      - NEXT_PUBLIC_API_BASE=http://localhost:4000/api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  mongo_data:

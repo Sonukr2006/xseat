@@ -1,0 +1,7 @@
+{
+  "name": "xseat",
+  "private": true,
+  "scripts": {
+    "dev": "./run-dev.sh"
+  }
+}

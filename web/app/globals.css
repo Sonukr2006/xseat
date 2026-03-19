@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply text-ink font-body;
+  background-color: #f8f1e8;
+  background-image: linear-gradient(180deg, #f8f1e8 0%, #e6f2ff 100%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.section-title {
+  @apply text-2xl md:text-3xl font-display tracking-tight;
+}
+
+.tag {
+  @apply inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs uppercase tracking-[0.2em] bg-ink text-sand;
+}
+
+.card {
+  @apply rounded-2xl border border-ink/10 bg-white/90 p-6 shadow-soft;
+}
