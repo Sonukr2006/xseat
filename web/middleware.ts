@@ -14,7 +14,8 @@ export function middleware(req: NextRequest) {
   }
 
   const sessionCookie = req.cookies.get('connect.sid');
-  if (!sessionCookie) {
+  const authCookie = req.cookies.get('xseat_auth');
+  if (!sessionCookie && !authCookie) {
     const url = req.nextUrl.clone();
     url.pathname = '/auth/login';
     url.searchParams.set('next', pathname);

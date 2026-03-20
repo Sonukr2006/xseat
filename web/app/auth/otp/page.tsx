@@ -4,7 +4,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import ScreenShell from '../../../components/ScreenShell';
 import { apiFetch } from '../../../lib/api';
-import { getPhone } from '../../../lib/auth';
+import { getPhone, setToken } from '../../../lib/auth';
 import { setSessionClient } from '../../../lib/session';
 
 export default function Otp() {
@@ -25,10 +25,13 @@ export default function Otp() {
     setLoading(true);
     setStatus(null);
     try {
-      await apiFetch('/auth/verify-otp', {
+      const response = await apiFetch<{ token?: string }>('/auth/verify-otp', {
         method: 'POST',
         body: JSON.stringify({ phone, otp }),
       });
+      if (response.token) {
+        setToken(response.token);
+      }
       setSessionClient();
       router.push(nextPath);
     } catch (err) {

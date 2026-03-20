@@ -9,6 +9,7 @@ type PredictionResult = {
   predictedStatus?: string;
   predicted_status?: string;
   model?: string;
+  reason?: string;
 };
 
 export default function Prediction() {
@@ -64,6 +65,7 @@ export default function Prediction() {
                 <p className="mt-2 text-sm text-ink/70">
                   Predicted final status: {result.predictedStatus || result.predicted_status}
                 </p>
+                {result.reason ? <p className="mt-2 text-sm text-ink/70">{result.reason}</p> : null}
               </>
             ) : (
               <p className="text-sm text-ink/70">Run a prediction to see results.</p>
