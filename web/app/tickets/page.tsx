@@ -54,7 +54,7 @@ export default function Tickets() {
                 {ticket.trainNumber} - {new Date(ticket.travelDate).toLocaleDateString()}
               </p>
               <p className="mt-2 text-lg font-display text-ocean">
-                {ticket.sourceStation} -> {ticket.destinationStation}
+                {ticket.sourceStation} &rarr; {ticket.destinationStation}
               </p>
               <p className="mt-2 text-sm text-ink/70">
                 Coach {ticket.coachNumber} - Seat {ticket.seatNumber} - {ticket.ticketStatus}

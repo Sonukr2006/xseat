@@ -60,7 +60,7 @@ export default function Prediction() {
             {result ? (
               <>
                 <p className="text-sm text-ink/70">
-                  WL{form.currentWaitlist} -> {Math.round((result.probability || 0) * 100)}% chance confirmation
+                  WL{form.currentWaitlist} &rarr; {Math.round((result.probability || 0) * 100)}% chance confirmation
                 </p>
                 <p className="mt-2 text-sm text-ink/70">
                   Predicted final status: {result.predictedStatus || result.predicted_status}
