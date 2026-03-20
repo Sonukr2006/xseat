@@ -98,7 +98,7 @@ export default function Dashboard() {
                 {nextTrip.trainNumber} - {new Date(nextTrip.travelDate).toLocaleDateString()}
               </p>
               <p className="mt-2 text-lg font-display text-ocean">
-                {nextTrip.sourceStation} -> {nextTrip.destinationStation}
+                {nextTrip.sourceStation} &rarr; {nextTrip.destinationStation}
               </p>
               <p className="mt-2 text-sm text-ink/70">
                 Coach {nextTrip.coachNumber} - Seat {nextTrip.seatNumber} - {nextTrip.ticketStatus}
